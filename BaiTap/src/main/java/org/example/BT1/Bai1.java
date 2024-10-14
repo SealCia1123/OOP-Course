@@ -1,3 +1,5 @@
+package org.example.BT1;
+
 import java.util.Scanner;
 
 public class Bai1 {
