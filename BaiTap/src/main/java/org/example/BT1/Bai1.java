@@ -7,20 +7,20 @@ public class Bai1 {
         int randomNumber = (int) (Math.random() * 100) + 1;
         int userNumber;
         Scanner sc = new Scanner(System.in);
-        System.out.print("Du doan so ngau nhien (1-100): ");
+        System.out.print("Dự đoán số ngẫu nhiên (1-100): ");
         userNumber = sc.nextInt();
-        System.out.println("So ngau nhien: " + randomNumber);
+        System.out.println("Số ngẫu nhiên: " + randomNumber);
         while (userNumber != randomNumber) {
             if (userNumber > randomNumber) {
-                System.out.println("So ban da chon: " + userNumber + "-> So ban doan lon hon");
-                System.out.print("Moi ban du doan lai: ");
+                System.out.println("Số bạn đã chọn: " + userNumber + "-> Số bạn đoán lớn hơn");
+                System.out.print("Mời bạn đoán lại: ");
                 userNumber = sc.nextInt();
             } else {
-                System.out.println("So ban da chon: " + userNumber + "-> So ban doan nho hon");
-                System.out.print("Moi ban du doan lai: ");
+                System.out.println("Số bạn đã chọn: " + userNumber + "-> Số bạn đoán nhỏ hơn");
+                System.out.print("Mời bạn đoán lại: ");
                 userNumber = sc.nextInt();
             }
         }
-        System.out.println("So ban da chon: " + userNumber + " -> Ban da doan dung");
+        System.out.println("Số bạn đã chọn: " + userNumber + " -> Bạn đã đoán đúng");
     }
 }

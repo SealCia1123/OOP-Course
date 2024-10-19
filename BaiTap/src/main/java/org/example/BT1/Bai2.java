@@ -6,14 +6,14 @@ public class Bai2 {
     public static void main(String[] args) {
         int n;
         Scanner sc = new Scanner(System.in);
-        System.out.print("Nhap vao n: ");
+        System.out.print("Nhập vào n: ");
         n = sc.nextInt();
         int[] arr = new int[n + 1];
-        System.out.print("Nhap vao mang: ");
+        System.out.print("Nhập vào mang: ");
         for (int i = 0; i < arr.length; i++) {
             arr[i] = sc.nextInt();
         }
-        System.out.print("Nhap vao x: ");
+        System.out.print("Nhập vào x: ");
         int x = sc.nextInt();
 
         // [2, 3, 1] = 1x^2 + 3x^1 + 2x^0
