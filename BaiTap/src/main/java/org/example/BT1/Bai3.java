@@ -31,10 +31,11 @@ public class Bai3 {
                     System.out.print("Nhập vào chuỗi: ");
                     String userString = sc.nextLine();
                     int count = 0;
+                    Character c = Character.valueOf('c');
                     for (int i = 0; i < userString.length(); i++) {
-                        if (userString.charAt(i) >= 'A' && userString.charAt(i) <= 'Z') {
+                        if (Character.isUpperCase(userString.charAt(i)))
                             count++;
-                        }
+
                     }
                     System.out.println("Số ký tự in hoa trong chuỗi là: " + count);
                     break;
@@ -56,6 +57,37 @@ public class Bai3 {
                     } catch (FileNotFoundException e) {
                         System.out.println("Không tìm thấy file");
                     }
+                    break;
+                }
+                case 4: {
+                    System.out.print("Nhập vào chuỗi: ");
+                    String userString = sc.nextLine();
+                    String[] words = userString.split("[,\\s;]+");
+                    String longestWord = words[0];
+                    for (String i : words) {
+                        if (i.length() > longestWord.length()) {
+                            longestWord = i;
+                        }
+                    }
+                    System.out.println("Số từ trong xâu vừa nhập là: " + words.length);
+                    System.out.println("Từ dài nhất trong xâu là: " + longestWord);
+                    break;
+                }
+                case 5: {
+                    System.out.print("Nhập vào chuỗi: ");
+                    String userString = sc.nextLine();
+                    String[] words = userString.trim().
+                            replaceAll("\\s+", " ").split(" ");
+                    String result = "";
+
+                    for (String i : words) {
+                        String firstChar = i.substring(0, 1).toUpperCase();
+                        String remainChars = i.substring(1).toLowerCase();
+                        result += firstChar + remainChars + " ";
+                    }
+
+                    result = result.trim();
+                    System.out.println("Xâu đã chuẩn hóa: " + result);
                     break;
                 }
                 default:
