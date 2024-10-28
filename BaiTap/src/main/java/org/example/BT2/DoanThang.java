@@ -3,54 +3,67 @@ package org.example.BT2;
 import java.util.Scanner;
 
 public class DoanThang {
-	private Diem a, b;
+    private Diem a, b;
 
-	public static void main(String[] args) {
-		DoanThang line = DoanThang.createDoanThang();
-		System.out.println("Doan thang: " + line.toString());
-		System.out.printf("Do dai doan thang: %.2f\n", line.calculateLength());
-		System.out.println("Trung diem cua doan thang: " + line.findMidpoint().toString());
-	}
+    public static void main(String[] args) {
+        DoanThang line = new DoanThang(Diem.createDiem(), Diem.createDiem());
+        System.out.println("Doan thang: " + line.toString());
+        System.out.printf("Do dai doan thang: %.2f\n", line.calculateLength());
+        System.out.println("Trung diem cua doan thang: " + line.findMidpoint().toString());
+        DoanThang line2 = new DoanThang(Diem.createDiem(), Diem.createDiem());
 
-	@Override
-	public String toString() {
-		return "[" + a.toString() + ", " + b.toString() + "]";
-	}
+        try {
+            System.out.println("Hai doan thang song song: " + line.isParallel(line2));
+        } catch (Exception e) {
+            System.out.println("Chia cho 0");
+        }
+    }
 
-	public double calculateLength() {
-		return a.calculateDistance(b);
-	}
+    @Override
+    public String toString() {
+        return "[" + a.toString() + ", " + b.toString() + "]";
+    }
 
-	public Diem findMidpoint() {
-		Diem midpoint = new Diem((a.getX() + b.getX()) / 2, (a.getY() + b.getY()) / 2);
-		return midpoint;
-	}
+    public double calculateLength() {
+        return a.calculateDistance(b);
+    }
 
-	public static DoanThang createDoanThang() {
-		Diem a = Diem.createDiem();
-		Diem b = Diem.createDiem();
-		DoanThang line = new DoanThang(a, b);
-		return line;
-	}
+    public Diem findMidpoint() {
+        Diem midpoint = new Diem((a.getX() + b.getX()) / 2, (a.getY() + b.getY()) / 2);
+        return midpoint;
+    }
 
-	public DoanThang(Diem a, Diem b) {
-		this.a = a;
-		this.b = b;
-	}
+    public boolean isParallel(DoanThang l) {
+        return (this.getA().getX() - this.getB().getX())
+                / (this.getA().getY() - this.getB().getY()) == (l.getA().getX() - l.getB().getX())
+                        / (l.getA().getY() - l.getB().getY());
+    }
 
-	public Diem getA() {
-		return a;
-	}
+    public static DoanThang createDoanThang() {
+        Diem a = Diem.createDiem();
+        Diem b = Diem.createDiem();
+        DoanThang line = new DoanThang(a, b);
+        return line;
+    }
 
-	public void setA(Diem a) {
-		this.a = a;
-	}
+    public DoanThang(Diem a, Diem b) {
+        this.a = a;
+        this.b = b;
+    }
 
-	public Diem getB() {
-		return b;
-	}
+    public Diem getA() {
+        return a;
+    }
 
-	public void setB(Diem b) {
-		this.b = b;
-	}
+    public void setA(Diem a) {
+        this.a = a;
+    }
+
+    public Diem getB() {
+        return b;
+    }
+
+    public void setB(Diem b) {
+        this.b = b;
+    }
 }
