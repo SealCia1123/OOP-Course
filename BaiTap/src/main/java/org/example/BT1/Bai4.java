@@ -1,6 +1,8 @@
 package org.example.BT1;
 
 import java.util.Arrays;
+import java.util.Scanner;
+import java.util.stream.IntStream;
 
 public class Bai4 {
     private static boolean isPrime(int x) {
@@ -96,14 +98,17 @@ public class Bai4 {
     public static void main(String[] args) {
         int[] arr = {3, 66, 99, 11, 2, 4, 7};
         // Cau a
-        System.out.println(sumOfPrimeNumber(arr));
+        System.out.println("Tong cac so nguyen to: " + IntStream.of(arr).filter(x -> isPrime(x)).sum());
 
         // Cau b
-        findMinNegativeNumber(arr);
-        findMaxPositiveNumber(arr);
+        System.out.println("Min: " + IntStream.of(arr).filter(x -> x < 0).min().orElse(-9999999));
+        System.out.println("Max: " + IntStream.of(arr).filter(x -> x > 0).max().orElse(999999));
+//        findMinNegativeNumber(arr);
+//        findMaxPositiveNumber(arr);
 
         // Cau c
-        findMinPrimeNumber(arr);
+        System.out.println("So nguyen to nho nhat: " + IntStream.of(arr).filter(x -> isPrime(x)).min().orElse(-9999999));
+//        findMinPrimeNumber(arr);
 
         // Cau d
         int[] b = sortPrimeArr(arr);
@@ -114,7 +119,9 @@ public class Bai4 {
         System.out.println();
 
         // Cau e
-        int x = 3;
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Nhap vao so can tim: ");
+        int x = Integer.parseInt(sc.nextLine());
         int result = Arrays.binarySearch(arr, x);
         System.out.println(result);
     }

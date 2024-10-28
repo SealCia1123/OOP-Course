@@ -1,27 +1,29 @@
 package org.example.BT1;
 
-import java.util.Scanner;
+import java.util.stream.IntStream;
 
 public class Bai5 {
 
-    private static void initRandomArray(int[][] arr) {
-        for (int i = 0; i < arr.length; i++) {
-            for (int j = 0; j < arr[0].length; j++) {
+    public static int[][] initRandomArray(int row, int col) {
+        int arr[][] = new int[row][col];
+        for (int i = 0; i < row; i++) {
+            for (int j = 0; j < col; j++) {
                 arr[i][j] = (int) (Math.random() * 100);
             }
         }
+        return arr;
     }
 
-    private static void printArray(int[][] arr) {
-        for (int i = 0; i < arr.length; i++) {
-            for (int j = 0; j < arr[0].length; j++) {
-                System.out.printf("%d ", arr[i][j]);
+    public static void printArray(int[][] arr) {
+        for (int[] i : arr) {
+            for (int j : i) {
+                System.out.printf("%d\t", i[j]);
             }
             System.out.println();
         }
     }
 
-    private static int sumOfColumn(int[][] arr, int col) {
+    public static int sumOfColumn(int[][] arr, int col) {
         col--;
         int sum = 0;
         for (int i = 0; i < arr.length; i++) {
@@ -30,7 +32,7 @@ public class Bai5 {
         return sum;
     }
 
-    private static int sumOfRow(int[][] arr, int row) {
+    public static int sumOfRow(int[][] arr, int row) {
         row--;
         int sum = 0;
         for (int i = 0; i < arr[0].length; i++) {
@@ -40,21 +42,7 @@ public class Bai5 {
     }
 
     public static void main(String[] args) {
-        int row, col;
-        Scanner sc = new Scanner(System.in);
-        System.out.print("Nhap vao so hang: ");
-        row = Integer.parseInt(sc.nextLine());
-        System.out.print("Nhap vao so cot: ");
-        col = Integer.parseInt(sc.nextLine());
-        int[][] arr = new int[row][col];
-        initRandomArray(arr);
-
-        printArray(arr);
-        System.out.print("Nhap cot can tinh tong: ");
-        int sumCol = Integer.parseInt(sc.nextLine());
-        System.out.print("Nhap hang can tinh tong: ");
-        int sumRow = Integer.parseInt(sc.nextLine());
-        System.out.println("Tong tren cot " + sumCol + ": " + sumOfColumn(arr, sumCol));
-        System.out.println("Tong tren hang " + sumRow + ": " + sumOfRow(arr, sumRow));
+        int[] arr = {1, 2, 3, 4, 5};
+        System.out.println(IntStream.of(arr).filter(x -> x > 0).sum());
     }
 }
