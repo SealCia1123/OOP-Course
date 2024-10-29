@@ -1,5 +1,7 @@
 package org.example.BT2;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class PhanSo {
@@ -7,17 +9,40 @@ public class PhanSo {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        System.out.print("Nhap phan so thu nhat: ");
-        PhanSo p = new PhanSo(sc.nextInt(), sc.nextInt());
-        p = p.rutGon();
-        System.out.println("Phan so p (da rut gon): " + p.toString());
+        List<PhanSo> mangPS = new ArrayList<>();
 
-        System.out.print("Nhap phan so thu hai: ");
-        PhanSo q = new PhanSo(sc.nextInt(), sc.nextInt());
-        q = q.rutGon();
-        System.out.println("Phan so q (da rut gon): " + q.toString());
-        System.out.println("Phep cong: " + p.cong(q).toString());
-        System.out.println("Phep tru: " + p.tru(q).toString());
+        System.out.print("Nhap so luong phan so: ");
+        int n = Integer.parseInt(sc.nextLine());
+        for (int i = 0; i < n; i++) {
+            System.out.print("Nhap phan so thu " + (i + 1) + ": ");
+            mangPS.add(new PhanSo(sc.nextInt(), sc.nextInt()));
+        }
+        for (var i : mangPS) {
+            System.out.print(i.toString() + "\t");
+        }
+        System.out.println();
+        PhanSo tong = new PhanSo();
+        PhanSo max = mangPS.get(0);
+        for (var i : mangPS) {
+            tong = tong.cong(i);
+            if (max.compareTo(i) == -1) {
+                max = i;
+            }
+        }
+        System.out.println("Tong phan so trong mang: " + tong.toString());
+        System.out.println("Phan so lon nhat trong mang: " + max.toString());
+    }
+
+    public int compareTo(PhanSo p) {
+        double a = (double) this.getTuSo() / this.getMauSo();
+        double b = (double) p.getTuSo() / p.getMauSo();
+        if (a > b) {
+            return 1;
+        } else if (a == b) {
+            return 0;
+        } else {
+            return -1;
+        }
     }
 
     public PhanSo cong(PhanSo p) {
@@ -29,6 +54,16 @@ public class PhanSo {
     public PhanSo tru(PhanSo p) {
         PhanSo kq = new PhanSo(this.getTuSo() * p.getMauSo() - this.getMauSo() * p.getTuSo(),
                 this.getMauSo() * p.getMauSo());
+        return kq.rutGon();
+    }
+
+    public PhanSo nhan(PhanSo p) {
+        PhanSo kq = new PhanSo(this.getTuSo() * p.getTuSo(), this.getMauSo() * p.getMauSo());
+        return kq.rutGon();
+    }
+
+    public PhanSo chia(PhanSo p) {
+        PhanSo kq = new PhanSo(this.getTuSo() * p.getMauSo(), this.getMauSo() * p.getTuSo());
         return kq.rutGon();
     }
 
