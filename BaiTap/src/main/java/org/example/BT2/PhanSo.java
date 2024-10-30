@@ -1,6 +1,7 @@
 package org.example.BT2;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
 
@@ -17,20 +18,15 @@ public class PhanSo {
             System.out.print("Nhap phan so thu " + (i + 1) + ": ");
             mangPS.add(new PhanSo(sc.nextInt(), sc.nextInt()));
         }
-        for (var i : mangPS) {
-            System.out.print(i.toString() + "\t");
-        }
+
+        System.out.println("Phan So trong mang: ");
+        mangPS.forEach((i) -> System.out.print(i.toString() + " "));
         System.out.println();
-        PhanSo tong = new PhanSo();
-        PhanSo max = mangPS.get(0);
-        for (var i : mangPS) {
-            tong = tong.cong(i);
-            if (max.compareTo(i) == -1) {
-                max = i;
-            }
-        }
-        System.out.println("Tong phan so trong mang: " + tong.toString());
-        System.out.println("Phan so lon nhat trong mang: " + max.toString());
+
+        PhanSo max = mangPS.stream().max((a, b) -> a.compareTo(b)).get();
+        PhanSo sum = mangPS.stream().reduce(new PhanSo(), (a, b) -> a.cong(b));
+        System.out.println("Max: " + max.toString());
+        System.out.println("Sum: " + sum.toString());
     }
 
     public int compareTo(PhanSo p) {
