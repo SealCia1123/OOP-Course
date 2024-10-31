@@ -2,8 +2,10 @@ package org.example.BT2;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.Scanner;
+import java.util.stream.DoubleStream;
 
 public class HocVien {
     private static int count = 1;
@@ -12,20 +14,24 @@ public class HocVien {
     private Date ngaySinh;
     private double[] diem = new double[3];
 
-    public void print() {
+    public void printInfo() {
         SimpleDateFormat f = new SimpleDateFormat("dd/MM/yyyy");
+        System.out.println("Ma hoc vien: " + this.getMaHocVien());
         System.out.println("Ten: " + this.getHoTen());
         System.out.println("Que quan: " + this.getQueQuan());
         System.out.println("Ngay sinh: " + f.format(this.getNgaySinh()));
-        System.out.println("===========================================");
+        System.out.println("Diem 3 mon: " + this.getDiem()[0] + "\t" + this.getDiem()[1] + "\t" + this.getDiem()[2]);
+        System.out.println("============================");
     }
 
     public void nhapDiem() {
         Scanner sc = new Scanner(System.in);
         System.out.print("Nhap diem 3 mon: ");
-        for (double i : this.diem) {
-            i = sc.nextDouble();
+        double[] temp = new double[this.getDiem().length];
+        for (int i = 0; i < temp.length; i++) {
+            temp[i] = sc.nextDouble();
         }
+        this.setDiem(temp);
     }
 
     public HocVien(String hoTen, String queQuan, Date ngaySinh) {
