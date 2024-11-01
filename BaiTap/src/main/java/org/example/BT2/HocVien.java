@@ -1,11 +1,8 @@
 package org.example.BT2;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.Scanner;
-import java.util.stream.DoubleStream;
 
 public class HocVien {
     private static int count = 1;
@@ -14,13 +11,31 @@ public class HocVien {
     private Date ngaySinh;
     private double[] diem = new double[3];
 
+    public int compareTo(HocVien h) {
+        if (this.tinhDiemTB() == h.tinhDiemTB()) {
+            return 0;
+        } else if (this.tinhDiemTB() < h.tinhDiemTB()) {
+            return -1;
+        } else {
+            return 1;
+        }
+    }
+
+    public boolean datHocBong() {
+        for (var i : this.getDiem()) {
+            if (i < 5)
+                return false;
+        }
+        return this.tinhDiemTB() > 8;
+    }
+
     public void printInfo() {
         SimpleDateFormat f = new SimpleDateFormat("dd/MM/yyyy");
         System.out.println("Ma hoc vien: " + this.getMaHocVien());
         System.out.println("Ten: " + this.getHoTen());
         System.out.println("Que quan: " + this.getQueQuan());
         System.out.println("Ngay sinh: " + f.format(this.getNgaySinh()));
-        System.out.println("Diem 3 mon: " + this.getDiem()[0] + "\t" + this.getDiem()[1] + "\t" + this.getDiem()[2]);
+        System.out.println("Diem 3 mon: " + this.getDiem()[0] + "  " + this.getDiem()[1] + "  " + this.getDiem()[2]);
         System.out.println("============================");
     }
 
@@ -32,6 +47,14 @@ public class HocVien {
             temp[i] = sc.nextDouble();
         }
         this.setDiem(temp);
+    }
+
+    public double tinhDiemTB() {
+        double res = 0;
+        for (var i : this.getDiem()) {
+            res += i;
+        }
+        return res / 3;
     }
 
     public HocVien(String hoTen, String queQuan, Date ngaySinh) {
