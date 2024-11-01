@@ -26,8 +26,20 @@ public class DsHocVien {
         ds.search("Ha").forEach(x -> x.printInfo());
         System.out.println("===========Sap xep theo diem tb mon hoc===========");
         ds.sort().forEach(x -> x.printInfo());
-        System.out.println("===========Ghi danh sach hoc bong vao file===========");
         ds.outputHB();
+        System.out.println("===========Danh sach hoc vien nho hon 18 tuoi===========");
+        System.out.println(ds.count(18));
+        System.out.println("===========Danh sach hoc vien lon hon 18 va nho hon 24===========");
+        System.out.println(ds.count(18, 23));
+    }
+
+    // BUG: need fix
+    public int count(int age) {
+        return (int) this.getDs().stream().filter(x -> x.tinhTuoi() < age || x.tinhTuoi() > age).count();
+    }
+
+    public int count(int min, int max) {
+        return (int) this.getDs().stream().filter(x -> x.tinhTuoi() >= min && x.tinhTuoi() <= max).count();
     }
 
     public void outputHB() {

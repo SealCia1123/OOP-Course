@@ -1,7 +1,11 @@
 package org.example.BT2;
 
+import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.Scanner;
 
 public class HocVien {
@@ -10,6 +14,13 @@ public class HocVien {
     private String hoTen, queQuan;
     private Date ngaySinh;
     private double[] diem = new double[3];
+
+    public int tinhTuoi() {
+        DateFormat formatter = new SimpleDateFormat("yyyyMMdd");
+        int d1 = Integer.parseInt(formatter.format(this.getNgaySinh()));
+        int d2 = Integer.parseInt(formatter.format(new Date()));
+        return (d2 - d1) / 10000;
+    }
 
     public int compareTo(HocVien h) {
         if (this.tinhDiemTB() == h.tinhDiemTB()) {
