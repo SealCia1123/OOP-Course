@@ -7,21 +7,24 @@ import java.io.PrintWriter;
 import java.util.Scanner;
 
 public class CauHoi {
-    public static final String questionDirectory = "src/main/resources/cauhoi/";
-    private String pathToFile;
+    public static final String questionDir = "src/main/resources/cauhoi/";
+    private File question;
 
-    public boolean isCorrectAnswer() {
-        File f = new File(this.getPathToFile());
+    public void checkAnswer() {
         String userAnswer = this.getAnswer();
         String correctAnswer = "";
-        try (Scanner reader = new Scanner(f)) {
+        try (Scanner reader = new Scanner(this.getQuestion())) {
             while (reader.hasNext()) {
                 correctAnswer = reader.nextLine();
             }
         } catch (FileNotFoundException e) {
-            System.out.println(e);
+            System.out.println("Khong tim thay file");
         }
-        return userAnswer.equals(correctAnswer);
+        if (userAnswer.equals(correctAnswer)) {
+            System.out.println("Tra loi dung!");
+        } else {
+            System.out.println("Tra loi sai! --> Dap an: " + correctAnswer);
+        }
     }
 
     private String getAnswer() {
@@ -31,23 +34,24 @@ public class CauHoi {
     }
 
     public void printQuestion() {
-        File f = new File(this.getPathToFile());
-        try (Scanner reader = new Scanner(f)) {
-            Scanner scanner = new Scanner(System.in);
+        try (Scanner reader = new Scanner(this.getQuestion())) {
             System.out.println("Cau hoi: " + reader.nextLine());
             for (char i = 'A'; i <= 'D'; i++) {
                 System.out.println(i + ": " + reader.nextLine());
             }
         } catch (FileNotFoundException e) {
-            System.out.println(e);
+            System.out.println("Khong tim thay file");
         }
+    }
+
+    public CauHoi(File f) {
+        this.setQuestion(f);
     }
 
     public CauHoi() {
         UUID uuid = UUID.randomUUID();
-        this.setPathToFile(questionDirectory + uuid.toString() + ".txt");
-        File f = new File(this.getPathToFile());
-        try (PrintWriter writer = new PrintWriter(f)) {
+        this.question = new File(questionDir + uuid.toString() + ".txt");
+        try (PrintWriter writer = new PrintWriter(this.getQuestion())) {
             Scanner sc = new Scanner(System.in);
             System.out.print("Nhap cau hoi: ");
             String question = sc.nextLine();
@@ -66,11 +70,11 @@ public class CauHoi {
         }
     }
 
-    public String getPathToFile() {
-        return pathToFile;
+    public File getQuestion() {
+        return question;
     }
 
-    public void setPathToFile(String pathToFile) {
-        this.pathToFile = pathToFile;
+    public void setQuestion(File question) {
+        this.question = question;
     }
 }

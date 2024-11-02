@@ -10,24 +10,63 @@ import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 import java.util.UUID;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class TracNghiem {
     private List<CauHoi> dsCauHoi = new ArrayList<>();
 
     public static void main(String[] args) {
         TracNghiem tracNghiem = new TracNghiem();
-        tracNghiem.addQuestion();
-        tracNghiem.addQuestion();
-        for (CauHoi i : tracNghiem.getDsCauHoi()) {
-            i.printQuestion();
-            System.out.println(i.isCorrectAnswer());
+        int opt = -1;
+        Scanner sc = new Scanner(System.in);
+        while (opt != 0) {
+            System.out.println("========== Trac Nghiem Tieng Anh ==========");
+            System.out.println("1. Them cau hoi");
+            System.out.println("2. Luyen tap");
+            System.out.println("0. Thoat");
+            System.out.print("Nhap lua chon: ");
+            opt = Integer.parseInt(sc.nextLine());
+            switch (opt) {
+                case 1:
+                    tracNghiem.addQuestion();
+                    break;
+                case 2:
+                    for (CauHoi i : tracNghiem.getRandomQuestion()) {
+                        i.printQuestion();
+                        i.checkAnswer();
+                        System.out.println("=================");
+                    }
+                    break;
+                case 0:
+                    System.out.println("Chao tam biet!");
+                    break;
+                default:
+                    System.out.println("Lua chon khong hop le");
+                    break;
+            }
         }
-        tracNghiem.getRandomQuestion().printQuestion();
     }
 
-    public CauHoi getRandomQuestion() {
+    public List<CauHoi> getRandomQuestion() {
+        Scanner sc = new Scanner(System.in);
         Random r = new Random();
-        return this.getDsCauHoi().get(r.nextInt(this.getDsCauHoi().size()));
+        System.out.print("Nhap so luong cau hoi muon on tap: ");
+        int n = Integer.parseInt(sc.nextLine());
+        List<CauHoi> lists = new ArrayList<>();
+        for (int i = 0; i < n; i++) {
+            lists.add(this.getDsCauHoi().get(r.nextInt(this.getDsCauHoi().size())));
+        }
+        return lists;
+    }
+
+    public TracNghiem() {
+        this.loadDir();
+    }
+
+    public void loadDir() {
+        List<File> files = Stream.of(new File(CauHoi.questionDir).listFiles()).collect(Collectors.toList());
+        files.forEach(x -> this.getDsCauHoi().add(new CauHoi(x)));
     }
 
     public void addQuestion() {
