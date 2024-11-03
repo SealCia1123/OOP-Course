@@ -33,9 +33,13 @@ public class TracNghiem {
                     break;
                 case 2:
                     for (CauHoi i : tracNghiem.getRandomQuestion()) {
-                        i.printQuestion();
-                        i.checkAnswer();
-                        System.out.println("=================");
+                        try {
+                            i.printQuestion();
+                            i.checkAnswer();
+                            System.out.println("=================");
+                        } catch (FileNotFoundException fnfe) {
+                            System.out.println("Khong co cau hoi trong kho du lieu");
+                        }
                     }
                     break;
                 case 0:
@@ -70,8 +74,12 @@ public class TracNghiem {
     }
 
     public void addQuestion() {
-        CauHoi question = new CauHoi();
-        this.getDsCauHoi().add(question);
+        try {
+            CauHoi question = new CauHoi();
+            this.getDsCauHoi().add(question);
+        } catch (FileNotFoundException fnfe) {
+            System.out.println("Khong tim thay duong dan");
+        }
     }
 
     public List<CauHoi> getDsCauHoi() {
