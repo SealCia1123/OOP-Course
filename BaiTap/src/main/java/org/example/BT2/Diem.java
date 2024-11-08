@@ -16,7 +16,7 @@ public class Diem {
 
     @Override
     public String toString() {
-        return "(" + this.getX() + ", " + this.getY() + ")";
+        return "(" + this.x + ", " + this.y + ")";
     }
 
     public double calculateDistance(Diem point) {

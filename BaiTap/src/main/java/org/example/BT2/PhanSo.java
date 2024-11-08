@@ -1,7 +1,6 @@
 package org.example.BT2;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
 
@@ -19,19 +18,22 @@ public class PhanSo {
             mangPS.add(new PhanSo(sc.nextInt(), sc.nextInt()));
         }
 
-        System.out.println("Phan So trong mang: ");
-        mangPS.forEach((i) -> System.out.print(i.toString() + " "));
+        System.out.print("Phan So trong mang: ");
+        mangPS.forEach((i) -> System.out.print(i.toString() + " \t"));
         System.out.println();
 
         PhanSo max = mangPS.stream().max((a, b) -> a.compareTo(b)).get();
         PhanSo sum = mangPS.stream().reduce(new PhanSo(), (a, b) -> a.cong(b));
+
         System.out.println("Max: " + max.toString());
         System.out.println("Sum: " + sum.toString());
+        System.out.print("Sap xep tang dan: ");
+        mangPS.stream().sorted((a, b) -> a.compareTo(b)).forEach(x -> System.out.print(x.toString() + " \t"));
     }
 
     public int compareTo(PhanSo p) {
-        double a = (double) this.getTuSo() / this.getMauSo();
-        double b = (double) p.getTuSo() / p.getMauSo();
+        double a = (double) this.tuSo / this.mauSo;
+        double b = (double) p.tuSo / p.mauSo;
         if (a > b) {
             return 1;
         } else if (a == b) {
@@ -41,34 +43,35 @@ public class PhanSo {
         }
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null || obj.getClass() != this.getClass())
+            return false;
+        if (this == obj)
+            return true;
+        PhanSo p = (PhanSo) obj;
+        return this.tuSo == p.tuSo && this.mauSo == p.mauSo;
+    }
+
     public PhanSo cong(PhanSo p) {
-        PhanSo kq = new PhanSo(this.getTuSo() * p.getMauSo() + this.getMauSo() * p.getTuSo(),
-                this.getMauSo() * p.getMauSo());
-        return kq.rutGon();
+        return new PhanSo(this.tuSo * p.mauSo + this.mauSo * p.tuSo, this.mauSo * p.mauSo).rutGon();
     }
 
     public PhanSo tru(PhanSo p) {
-        PhanSo kq = new PhanSo(this.getTuSo() * p.getMauSo() - this.getMauSo() * p.getTuSo(),
-                this.getMauSo() * p.getMauSo());
-        return kq.rutGon();
+        return new PhanSo(this.tuSo * p.mauSo - this.mauSo * p.tuSo, this.mauSo * p.mauSo).rutGon();
     }
 
     public PhanSo nhan(PhanSo p) {
-        PhanSo kq = new PhanSo(this.getTuSo() * p.getTuSo(), this.getMauSo() * p.getMauSo());
-        return kq.rutGon();
+        return new PhanSo(this.tuSo * p.tuSo, this.mauSo * p.mauSo).rutGon();
     }
 
     public PhanSo chia(PhanSo p) {
-        PhanSo kq = new PhanSo(this.getTuSo() * p.getMauSo(), this.getMauSo() * p.getTuSo());
-        return kq.rutGon();
+        return new PhanSo(this.tuSo * p.mauSo, this.mauSo * p.tuSo).rutGon();
     }
 
     public PhanSo rutGon() {
-        PhanSo p = new PhanSo(this.getTuSo(), this.getMauSo());
-        int UCLN = PhanSo.UCLN(p.getTuSo(), p.getMauSo());
-        p.setTuSo(p.getTuSo() / UCLN);
-        p.setMauSo(p.getMauSo() / UCLN);
-        return p;
+        int UCLN = PhanSo.UCLN(this.tuSo, this.mauSo);
+        return new PhanSo(this.tuSo / UCLN, this.mauSo / UCLN);
     }
 
     public static int UCLN(int a, int b) {
@@ -88,9 +91,9 @@ public class PhanSo {
 
     @Override
     public String toString() {
-        if (this.getMauSo() == 1)
-            return this.getTuSo() + "";
-        return this.getTuSo() + "/" + this.getMauSo();
+        if (this.mauSo == 1)
+            return Integer.toString(this.tuSo);
+        return this.tuSo + "/" + this.mauSo;
     }
 
     public PhanSo() {

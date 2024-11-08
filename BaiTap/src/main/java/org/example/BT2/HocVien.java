@@ -1,11 +1,8 @@
 package org.example.BT2;
 
 import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.Scanner;
 
 public class HocVien {
@@ -33,7 +30,7 @@ public class HocVien {
     }
 
     public boolean datHocBong() {
-        for (var i : this.getDiem()) {
+        for (var i : this.diem) {
             if (i < 5)
                 return false;
         }
@@ -57,7 +54,7 @@ public class HocVien {
         for (int i = 0; i < temp.length; i++) {
             temp[i] = sc.nextDouble();
         }
-        this.setDiem(temp);
+        this.diem = temp;
     }
 
     public double tinhDiemTB() {

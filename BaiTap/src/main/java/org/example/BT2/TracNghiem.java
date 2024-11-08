@@ -4,12 +4,10 @@ import org.example.BT2.CauHoi;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
-import java.util.UUID;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 

@@ -33,7 +33,6 @@ public class DsHocVien {
         System.out.println(ds.count(18, 23));
     }
 
-    // BUG: need fix
     public int count(int age) {
         return (int) this.getDs().stream().filter(x -> x.tinhTuoi() < age || x.tinhTuoi() > age).count();
     }

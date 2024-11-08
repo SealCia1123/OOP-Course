@@ -1,7 +1,5 @@
 package org.example.BT2;
 
-import java.util.Scanner;
-
 public class DoanThang {
     private Diem a, b;
 
@@ -29,14 +27,14 @@ public class DoanThang {
     }
 
     public Diem findMidpoint() {
-        Diem midpoint = new Diem((a.getX() + b.getX()) / 2, (a.getY() + b.getY()) / 2);
+        Diem midpoint = new Diem((this.a.getX() + this.b.getX()) / 2, (this.a.getY() + this.b.getY()) / 2);
         return midpoint;
     }
 
     public boolean isParallel(DoanThang l) {
-        return (this.getA().getX() - this.getB().getX())
-                / (this.getA().getY() - this.getB().getY()) == (l.getA().getX() - l.getB().getX())
-                        / (l.getA().getY() - l.getB().getY());
+        return (this.a.getX() - this.b.getX())
+                / (this.a.getY() - this.b.getY()) == (l.a.getX() - l.b.getX())
+                        / (l.a.getY() - l.b.getY());
     }
 
     public static DoanThang createDoanThang() {
