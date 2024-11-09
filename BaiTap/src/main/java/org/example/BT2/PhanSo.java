@@ -43,16 +43,6 @@ public class PhanSo {
         }
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == null || obj.getClass() != this.getClass())
-            return false;
-        if (this == obj)
-            return true;
-        PhanSo p = (PhanSo) obj;
-        return this.tuSo == p.tuSo && this.mauSo == p.mauSo;
-    }
-
     public PhanSo cong(PhanSo p) {
         return new PhanSo(this.tuSo * p.mauSo + this.mauSo * p.tuSo, this.mauSo * p.mauSo).rutGon();
     }
