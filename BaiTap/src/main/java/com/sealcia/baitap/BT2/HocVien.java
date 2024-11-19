@@ -12,6 +12,7 @@ public class HocVien {
     private LocalDate ngaySinh;
     private double[] diem = new double[Config.SO_MON];
 
+
     public int tinhTuoi() {
         return Period.between(this.ngaySinh, LocalDate.now()).getYears();
     }
