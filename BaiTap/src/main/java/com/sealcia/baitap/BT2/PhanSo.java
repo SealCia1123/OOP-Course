@@ -1,34 +1,45 @@
-package org.example.BT2;
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package com.sealcia.baitap.BT2;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class PhanSo {
+
     private int tuSo, mauSo;
+    public static final Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        List<PhanSo> mangPS = new ArrayList<>();
+        // Scanner sc = new Scanner(System.in);
+        // List<PhanSo> mangPS = new ArrayList<>();
+        //
+        // System.out.print("Nhap so luong phan so: ");
+        // int n = Integer.parseInt(sc.nextLine());
+        // for (int i = 0; i < n; i++) {
+        // System.out.print("Nhap phan so thu " + (i + 1) + ": ");
+        // mangPS.add(new PhanSo(sc.nextInt(), sc.nextInt()));
+        // }
+        //
+        // System.out.print("Phan So trong mang: ");
+        // mangPS.forEach((i) -> System.out.print(i.toString() + " \t"));
+        // System.out.println();
+        //
+        // PhanSo max = mangPS.stream().max((a, b) -> a.compareTo(b)).get();
+        // PhanSo sum = mangPS.stream().reduce(new PhanSo(), (a, b) -> a.cong(b));
+        //
+        // System.out.println("Max: " + max.toString());
+        // System.out.println("Sum: " + sum.toString());
+        // System.out.print("Sap xep tang dan: ");
+        // mangPS.stream().sorted((a, b) -> a.compareTo(b)).forEach(x ->
+        // System.out.print(x.toString() + " \t"));
+    }
 
-        System.out.print("Nhap so luong phan so: ");
-        int n = Integer.parseInt(sc.nextLine());
-        for (int i = 0; i < n; i++) {
-            System.out.print("Nhap phan so thu " + (i + 1) + ": ");
-            mangPS.add(new PhanSo(sc.nextInt(), sc.nextInt()));
-        }
-
-        System.out.print("Phan So trong mang: ");
-        mangPS.forEach((i) -> System.out.print(i.toString() + " \t"));
-        System.out.println();
-
-        PhanSo max = mangPS.stream().max((a, b) -> a.compareTo(b)).get();
-        PhanSo sum = mangPS.stream().reduce(new PhanSo(), (a, b) -> a.cong(b));
-
-        System.out.println("Max: " + max.toString());
-        System.out.println("Sum: " + sum.toString());
-        System.out.print("Sap xep tang dan: ");
-        mangPS.stream().sorted((a, b) -> a.compareTo(b)).forEach(x -> System.out.print(x.toString() + " \t"));
+    @Override
+    public boolean equals(Object obj) {
+        PhanSo p = (PhanSo) obj;
+        return this.compareTo(p.rutGon()) == 0;
     }
 
     public int compareTo(PhanSo p) {
@@ -41,6 +52,13 @@ public class PhanSo {
         } else {
             return -1;
         }
+    }
+
+    public void nhap() {
+        System.out.print("Nhap tu so: ");
+        this.tuSo = Integer.parseInt(sc.nextLine());
+        System.out.print("Nhap mau so: ");
+        this.mauSo = Integer.parseInt(sc.nextLine());
     }
 
     public PhanSo cong(PhanSo p) {
@@ -67,8 +85,9 @@ public class PhanSo {
     public static int UCLN(int a, int b) {
         a = Math.abs(a);
         b = Math.abs(b);
-        if (a == 0 || b == 0)
+        if (a == 0 || b == 0) {
             return a + b;
+        }
         while (a != b) {
             if (a > b) {
                 a -= b;
@@ -81,8 +100,9 @@ public class PhanSo {
 
     @Override
     public String toString() {
-        if (this.mauSo == 1)
+        if (this.mauSo == 1) {
             return Integer.toString(this.tuSo);
+        }
         return this.tuSo + "/" + this.mauSo;
     }
 

@@ -1,22 +1,19 @@
-package org.example.BT2;
+package com.sealcia.baitap.BT2;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Scanner;
+import java.time.LocalDate;
+import java.time.Period;
+import java.util.stream.DoubleStream;
 
 public class HocVien {
+
     private static int count = 1;
-    private int maHocVien;
+    private int maHocVien = count++;
     private String hoTen, queQuan;
-    private Date ngaySinh;
-    private double[] diem = new double[3];
+    private LocalDate ngaySinh;
+    private double[] diem = new double[Config.SO_MON];
 
     public int tinhTuoi() {
-        DateFormat formatter = new SimpleDateFormat("yyyyMMdd");
-        int d1 = Integer.parseInt(formatter.format(this.getNgaySinh()));
-        int d2 = Integer.parseInt(formatter.format(new Date()));
-        return (d2 - d1) / 10000;
+        return Period.between(this.ngaySinh, LocalDate.now()).getYears();
     }
 
     public int compareTo(HocVien h) {
@@ -31,45 +28,47 @@ public class HocVien {
 
     public boolean datHocBong() {
         for (var i : this.diem) {
-            if (i < 5)
+            if (i < 5) {
                 return false;
+            }
         }
-        return this.tinhDiemTB() > 8;
+        return this.tinhDiemTB() >= 8;
     }
 
     public void printInfo() {
-        SimpleDateFormat f = new SimpleDateFormat("dd/MM/yyyy");
         System.out.println("Ma hoc vien: " + this.getMaHocVien());
         System.out.println("Ten: " + this.getHoTen());
         System.out.println("Que quan: " + this.getQueQuan());
-        System.out.println("Ngay sinh: " + f.format(this.getNgaySinh()));
+        System.out.println("Ngay sinh: " + this.ngaySinh.format(Config.FORMATTER));
         System.out.println("Diem 3 mon: " + this.getDiem()[0] + "  " + this.getDiem()[1] + "  " + this.getDiem()[2]);
         System.out.println("============================");
     }
 
     public void nhapDiem() {
-        Scanner sc = new Scanner(System.in);
-        System.out.print("Nhap diem 3 mon: ");
-        double[] temp = new double[this.getDiem().length];
-        for (int i = 0; i < temp.length; i++) {
-            temp[i] = sc.nextDouble();
+        System.out.printf("Nhap diem 3 mon cho sinh vien %s: ", this.hoTen.toUpperCase());
+        for (int i = 0; i < Config.SO_MON; i++) {
+            diem[i] = Config.sc.nextDouble();
         }
-        this.diem = temp;
     }
 
     public double tinhDiemTB() {
-        double res = 0;
-        for (var i : this.getDiem()) {
-            res += i;
-        }
-        return res / 3;
+        return DoubleStream.of(this.diem).average().getAsDouble();
     }
 
-    public HocVien(String hoTen, String queQuan, Date ngaySinh) {
-        this.maHocVien = count++;
+    public HocVien(String hoTen, String queQuan, LocalDate ngaySinh) {
         this.hoTen = hoTen;
         this.queQuan = queQuan;
         this.ngaySinh = ngaySinh;
+    }
+
+    public HocVien(String hoTen, String queQuan, String ngaySinh) {
+        this(hoTen, queQuan, LocalDate.parse(ngaySinh, Config.FORMATTER));
+    }
+
+    public void print() {
+        System.out.println("Ho va ten: " + this.hoTen);
+        System.out.println("Que quan: " + this.queQuan);
+        System.out.println("Ngay sinh: " + this.ngaySinh.format(Config.FORMATTER));
     }
 
     public int getMaHocVien() {
@@ -96,11 +95,11 @@ public class HocVien {
         this.queQuan = queQuan;
     }
 
-    public Date getNgaySinh() {
+    public LocalDate getNgaySinh() {
         return ngaySinh;
     }
 
-    public void setNgaySinh(Date ngaySinh) {
+    public void setNgaySinh(LocalDate ngaySinh) {
         this.ngaySinh = ngaySinh;
     }
 
