@@ -1,0 +1,5 @@
+Ma hoc vien: 3
+Ten: Nguyen Can C
+Que quan: Da Nang
+Ngay sinh: 20/02/2005
+Diem 3 mon: 8.0  8.0  8.0
