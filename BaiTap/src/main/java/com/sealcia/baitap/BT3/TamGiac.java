@@ -5,7 +5,7 @@ public class TamGiac {
 
     @Override
     public String toString() {
-        return String.format("Hinh tam giac\nDien tich: %.1f\nChu vi: %.1f",
+        return String.format("Hinh tam giac\n- Dien tich: %.1f\n- Chu vi: %.1f",
                 this.tinhDienTich(), this.tinhChuVi());
     }
 
