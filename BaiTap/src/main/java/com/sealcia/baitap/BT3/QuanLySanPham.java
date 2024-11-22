@@ -3,12 +3,20 @@ package com.sealcia.baitap.BT3;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class QuanLySanPham {
     private List<SanPham> ds = new ArrayList<>();
 
+    public List<SanPham> search(String keyword) {
+        return this.ds.stream()
+                .filter(x -> x.getName().toLowerCase().contains(keyword.toLowerCase())
+                        || x.getDesc().toLowerCase().contains(keyword.toLowerCase()))
+                .collect(Collectors.toList());
+    }
+
     public void printAll() {
-        this.ds.forEach(x -> System.out.println(x + "\n=========================\n"));
+        this.ds.forEach(x -> x.print());
     }
 
     public void addSP(SanPham... products) {

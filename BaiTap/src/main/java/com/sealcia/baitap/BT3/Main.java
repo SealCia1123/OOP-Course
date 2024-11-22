@@ -11,10 +11,13 @@ public class Main {
         ql.addSP(p1);
         ql.addSP(p2);
         ql.addSP(p3, p4, p5);
-        System.out.println("Before");
+        System.out.println("=========Before=========");
         ql.printAll();
-        System.out.println("After");
+        System.out.println("=========After=========");
         ql.removeSP(new Sach(4, "Truyen tranh", "Truyen Doraemon", "Kim Dong", 20, 100));
         ql.printAll();
+
+        System.out.println("======Tim kiem san pham co ten 'But'======");
+        ql.search("but").forEach(x -> x.print());
     }
 }

@@ -8,8 +8,12 @@ public class SanPham {
 
     @Override
     public String toString() {
-        return String.format("ID: %d\nTen: %s\t\tMo ta: %s\nNha san xuat: %s\t\tGia ban: %.1f",
+        return String.format("ID: %d\nTen: %s\nMo ta: %s\nNha san xuat: %s\nGia ban: %.1f",
                 this.id, this.name, this.desc, this.producer, this.price);
+    }
+
+    public void print() {
+        System.out.println(this.toString() + "\n=======================");
     }
 
     public SanPham(int id, String name, String desc, String producer, double price) {
