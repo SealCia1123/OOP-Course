@@ -13,21 +13,18 @@ public class DsHocVien {
 
     private List<HocVien> ds = new ArrayList<>();
 
-    public int count(int age) {
-        return (int) this.getDs().stream().filter(x -> x.tinhTuoi() < age || x.tinhTuoi() > age).count();
-    }
-
-    public int count(int min, int max) {
-        return (int) this.getDs().stream().filter(x -> x.tinhTuoi() >= min && x.tinhTuoi() <= max).count();
+    public int countNhoHon18() {
+        return (int) this.ds.stream().filter(x -> x.isNhoHon18() == 1).count();
     }
 
     public void outputHB() {
         File f = new File("src/main/resources/hocbong.txt");
         try (PrintWriter writer = new PrintWriter(f)) {
-            this.getDSHocBong().forEach(x -> writer.println("Ma hoc vien: " + x.getMaHocVien()
-                    + "\nTen: " + x.getHoTen() + "\nQue quan: " + x.getQueQuan()
-                    + "\nNgay sinh: " + x.getNgaySinh().format(Config.FORMATTER) + "\nDiem trung binh: "
-                    + x.tinhDiemTB()));
+            this.getDSHocBong()
+                    .forEach(x -> writer.println("Ma hoc vien: " + x.getMaHocVien() + "\nTen: "
+                            + x.getHoTen() + "\nQue quan: " + x.getQueQuan() + "\nNgay sinh: "
+                            + x.getNgaySinh().format(Config.FORMATTER) + "\nDiem trung binh: "
+                            + x.tinhDiemTB()));
         } catch (FileNotFoundException e) {
             System.out.println("Khong tim thay file");
         }
@@ -46,7 +43,8 @@ public class DsHocVien {
     }
 
     public List<HocVien> search(String kw) {
-        return this.getDs().stream().filter(x -> x.getHoTen().contains(kw) || x.getQueQuan().contains(kw))
+        return this.getDs().stream()
+                .filter(x -> x.getHoTen().contains(kw) || x.getQueQuan().contains(kw))
                 .collect(Collectors.toList());
     }
 
@@ -79,8 +77,7 @@ public class DsHocVien {
         }
     }
 
-    public DsHocVien() {
-    }
+    public DsHocVien() {}
 
     public List<HocVien> getDs() {
         return ds;

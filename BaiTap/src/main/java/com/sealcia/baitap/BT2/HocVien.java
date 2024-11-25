@@ -1,7 +1,6 @@
 package com.sealcia.baitap.BT2;
 
 import java.time.LocalDate;
-import java.time.Period;
 import java.util.stream.DoubleStream;
 
 public class HocVien {
@@ -12,9 +11,8 @@ public class HocVien {
     private LocalDate ngaySinh;
     private double[] diem = new double[Config.SO_MON];
 
-
-    public int tinhTuoi() {
-        return Period.between(this.ngaySinh, LocalDate.now()).getYears();
+    public int isNhoHon18() {
+        return this.ngaySinh.plusYears(18).compareTo(LocalDate.now());
     }
 
     public int compareTo(HocVien h) {
@@ -41,7 +39,8 @@ public class HocVien {
         System.out.println("Ten: " + this.getHoTen());
         System.out.println("Que quan: " + this.getQueQuan());
         System.out.println("Ngay sinh: " + this.ngaySinh.format(Config.FORMATTER));
-        System.out.println("Diem 3 mon: " + this.getDiem()[0] + "  " + this.getDiem()[1] + "  " + this.getDiem()[2]);
+        System.out.println("Diem 3 mon: " + this.getDiem()[0] + "  " + this.getDiem()[1] + "  "
+                + this.getDiem()[2]);
         System.out.println("============================");
     }
 
