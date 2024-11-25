@@ -6,9 +6,18 @@ public class SanPham {
     private String name, desc, producer;
     private double price;
 
+    public int compareTo(SanPham product) {
+        if (this.price > product.price) {
+            return 1;
+        } else if (this.price < product.price) {
+            return -1;
+        }
+        return 0;
+    }
+
     @Override
     public String toString() {
-        return String.format("ID: %d\nTen: %s\nMo ta: %s\nNha san xuat: %s\nGia ban: %.1f",
+        return String.format("ID: %d\nTen: %s\nMo ta: %s\nNha san xuat: %s\nGia ban: %.2f",
                 this.id, this.name, this.desc, this.producer, this.price);
     }
 
