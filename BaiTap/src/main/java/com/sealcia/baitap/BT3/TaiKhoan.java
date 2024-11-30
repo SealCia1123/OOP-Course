@@ -6,7 +6,6 @@ enum KyHan {
     MOT_TUAN, MOT_THANG, MOT_NAM
 }
 
-
 public class TaiKhoan {
     private static int id = 1;
     private String soDT, soTaiKhoan, tenTaiKhoan, email;
@@ -15,6 +14,10 @@ public class TaiKhoan {
 
     public void add(double soTien) {
         this.soTien += soTien;
+    }
+
+    public void subtract(double soTien) {
+        this.soTien -= soTien;
     }
 
     public void print() {
@@ -29,7 +32,8 @@ public class TaiKhoan {
                 this.ngayTao.format(Config.FORMATTER));
     }
 
-    public TaiKhoan() {}
+    public TaiKhoan() {
+    }
 
     public TaiKhoan(String soDT, String tenTaiKhoan, String email, double soTien,
             LocalDate ngayTao) {

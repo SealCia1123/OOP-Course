@@ -7,6 +7,10 @@ import java.util.List;
 public class QLTK {
     private List<TaiKhoan> ds = new ArrayList<>();
 
+    public void withdraw(String soTaiKhoan, String tenTaiKhoan, double soTien) {
+        this.lookup(soTaiKhoan, tenTaiKhoan).subtract(soTien);
+    }
+
     public void deposit(String soTaiKhoan, String tenTaiKhoan, double soTien) {
         this.lookup(soTaiKhoan, tenTaiKhoan).add(soTien);
     }
@@ -25,7 +29,8 @@ public class QLTK {
         this.ds.add(tk);
     }
 
-    public QLTK() {}
+    public QLTK() {
+    }
 
     public List<TaiKhoan> getDs() {
         return ds;

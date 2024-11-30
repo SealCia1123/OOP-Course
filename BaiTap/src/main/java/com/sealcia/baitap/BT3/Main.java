@@ -14,18 +14,20 @@ public class Main {
         ql.addSP(p1);
         ql.addSP(p2);
         ql.addSP(p3, p4, p5, p6, p7, p8);
+
         System.out.println("=========Before=========");
         ql.printAll();
         System.out.println("=========After=========");
         ql.removeSP(new Sach(4, "Truyen tranh", "Truyen Doraemon", "Kim Dong", 20, 100));
         ql.removeSP(10);
         ql.printAll();
+
         System.out.println("======Tim kiem san pham co ten 'But'======");
         ql.search("but").forEach(x -> x.print());
         System.out.println("======Tim kiem san pham co id 3======");
         ql.search(3).print();
-        System.out.println("======Tim kiem san pham co khoang gia tu 20 den 100======");
-        ql.search(20, 100).forEach(x -> x.print());
+        System.out.println("======Tim kiem san pham co khoang gia tu 10 den 100======");
+        ql.search(10, 100).forEach(x -> x.print());
         ql.update(2);
         System.out.println("======Sort=======");
         ql.sort().forEach(x -> x.print());
