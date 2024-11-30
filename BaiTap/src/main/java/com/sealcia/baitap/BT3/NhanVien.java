@@ -4,20 +4,30 @@ enum GioiTinh { NAM, NU }
 
 public class NhanVien {
     public static final int luong = 100000;
-    private static int count = 1;
-    private int id = count++;
-    private String hoTen, CMND, SDT;
-    private GioiTinh gioiTinh;
-    private int soNgayCong;
+    protected static int count = 1;
+    protected int id = count++;
+    protected String hoTen, CMND, SDT, queQuan;
+    protected GioiTinh gioiTinh;
+    protected int soNgayCong;
 
-    public int tinhLuong() {
+    public void hienThi() {
+        System.out.println("Ho ten: " + this.hoTen);
+        System.out.println("So CMND: " + this.CMND);
+        System.out.println("Gioi tinh: " + this.gioiTinh);
+        System.out.println("Que quan: " + this.queQuan);
+        System.out.println("So dien thoai: " + this.SDT);
+    }
+
+    public double tinhLuong() {
         return NhanVien.luong * this.soNgayCong;
     }
 
-    public NhanVien(String hoTen, String CMND, String SDT, GioiTinh gioiTinh, int soNgayCong) {
+    public NhanVien(
+        String hoTen, String CMND, String SDT, String queQuan, GioiTinh gioiTinh, int soNgayCong) {
         this.hoTen = hoTen;
         this.CMND = CMND;
         this.SDT = SDT;
+        this.queQuan = queQuan;
         this.gioiTinh = gioiTinh;
         this.soNgayCong = soNgayCong;
     }
