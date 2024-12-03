@@ -3,9 +3,9 @@ package com.sealcia.baitap.BT3;
 public class Main {
     public static void main(String[] args) {
         QuanLySanPham ql = new QuanLySanPham();
-        SanPham p1 = new SanPham(1, "But chi", "But chi hang A", "Hang A", 5.1);
-        SanPham p2 = new SanPham(2, "But bi", "But bi hang A", "Hang A", 3.1);
-        SanPham p3 = new SanPham(3, "Thuoc ke", "Thuoc ke", "ABC", 200);
+        SanPham p1 = new Sach(1, "But chi", "But chi hang A", "Hang A", 5.1, 100);
+        SanPham p2 = new BangDia(2, "But bi", "But bi hang A", "Hang A", 3.1, 200);
+        SanPham p3 = new Sach(3, "Thuoc ke", "Thuoc ke", "ABC", 200, 120);
         SanPham p4 = new Sach(4, "Truyen tranh", "Truyen Doraemon", "Kim Dong", 100, 100);
         SanPham p5 = new BangDia(5, "Bang dia lau", "Noi tinh yeu bat dau", "CCMK", 10.1, 3.5);
         SanPham p6 = new Sach(10, "Truyen tranh 2", "Truyen Doraemon 2", "Kim Dong", 20, 100);
@@ -14,7 +14,6 @@ public class Main {
         ql.addSP(p1);
         ql.addSP(p2);
         ql.addSP(p3, p4, p5, p6, p7, p8);
-
         System.out.println("=========Before=========");
         ql.printAll();
         System.out.println("=========After=========");
@@ -30,6 +29,5 @@ public class Main {
         ql.search(10, 100).forEach(x -> x.print());
         ql.update(2);
         System.out.println("======Sort=======");
-        ql.sort().forEach(x -> x.print());
     }
 }
