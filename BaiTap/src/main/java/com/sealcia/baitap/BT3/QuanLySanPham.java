@@ -8,9 +8,10 @@ import java.util.stream.Collectors;
 public class QuanLySanPham {
     private List<SanPham> ds = new ArrayList<>();
 
-    public List<SanPham> sort() {
-        return this.ds.stream().sorted((a, b) -> -a.compareTo(b)).collect(Collectors.toList());
+    public void sort() {
+        this.ds.sort((a, b) -> Double.compare(a.getPrice(), b.getPrice()));
     }
+
     public void update(int id) {
         System.out.println("1. Sua ten");
         System.out.println("2. Sua mo ta");
@@ -34,19 +35,24 @@ public class QuanLySanPham {
                 break;
         }
     }
-    public List<SanPham> search(double min, double max) {
-        return this.ds.stream().filter(x -> x.getPrice() >= min && x.getPrice() <= max).collect(Collectors.toList());
-    }
 
-    public List<SanPham> search(SanPham product) {
-        return this.ds.stream().filter(x -> x.getClass().equals(product.getClass())).collect(Collectors.toList());
+    public List<SanPham> search(double min, double max) {
+        return this.ds.stream()
+            .filter(x -> x.getPrice() >= min && x.getPrice() <= max)
+            .collect(Collectors.toList());
     }
 
     public List<SanPham> search(String keyword) {
-        return this.ds.stream()
-                .filter(x -> x.getName().toLowerCase().contains(keyword.toLowerCase())
+        try {
+            Class c = Class.forName(keyword);
+            return this.ds.stream().filter(x -> c.isInstance(x)).collect(Collectors.toList());
+        } catch (ClassNotFoundException e) {
+            return this.ds.stream()
+                .filter(x
+                    -> x.getName().toLowerCase().contains(keyword.toLowerCase())
                         || x.getDesc().toLowerCase().contains(keyword.toLowerCase()))
                 .collect(Collectors.toList());
+        }
     }
 
     public SanPham search(int id) {
