@@ -48,9 +48,7 @@ public class QuanLySanPham {
             return this.ds.stream().filter(x -> c.isInstance(x)).collect(Collectors.toList());
         } catch (ClassNotFoundException e) {
             return this.ds.stream()
-                .filter(x
-                    -> x.getName().toLowerCase().contains(keyword.toLowerCase())
-                        || x.getDesc().toLowerCase().contains(keyword.toLowerCase()))
+                .filter(x -> x.getName().contains(keyword) || x.getDesc().contains(keyword))
                 .collect(Collectors.toList());
         }
     }
@@ -69,6 +67,12 @@ public class QuanLySanPham {
 
     public void addSP(SanPham product) {
         this.ds.add(product);
+    }
+
+    public void addSP() {
+        SanPham sp = new Sach();
+        sp.add();
+        this.ds.add(sp);
     }
 
     public void removeSP(int id) {
