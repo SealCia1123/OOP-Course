@@ -9,7 +9,18 @@ public class QuanLySanPham {
     private List<SanPham> ds = new ArrayList<>();
 
     public void sort() {
-        this.ds.sort((a, b) -> Double.compare(a.getPrice(), b.getPrice()));
+        this.ds.sort((a, b) -> - Double.compare(a.getPrice(), b.getPrice()));
+    }
+
+    public void sortType() {
+        this.ds.sort((a, b) -> {
+            String type1 = a.getClass().toString();
+            String type2 = b.getClass().toString();
+            if (type1.equals(type2)) {
+                return -Double.compare(a.getPrice(), b.getPrice());
+            }
+            return type1.compareTo(type2);
+        });
     }
 
     public void update(int id) {
@@ -80,7 +91,7 @@ public class QuanLySanPham {
     }
 
     public void removeSP(SanPham product) {
-        this.ds.remove(this.ds.indexOf(product));
+        this.removeSP(product.getId());
     }
 
     public List<SanPham> getDs() {
