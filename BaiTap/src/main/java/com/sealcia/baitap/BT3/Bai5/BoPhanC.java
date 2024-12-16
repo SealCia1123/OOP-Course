@@ -2,14 +2,13 @@ package com.sealcia.baitap.BT3.Bai5;
 
 public class BoPhanC extends NhanVien {
   @Override
-  public void hienThi() {
-    super.hienThi();
-    System.out.println("Bo phan: A");
+  public String toString() {
+    return super.toString() + "Bo phan: C\n";
   }
 
   @Override
-  public double tinhLuong() {
-    return 2.5 * NhanVien.luong * this.soNgayCong;
+  public double getSalaryRate() {
+    return 2.5;
   }
 
   public BoPhanC(

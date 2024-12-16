@@ -6,23 +6,26 @@ enum GioiTinh {
 }
 
 public class NhanVien {
-  public static final int luong = 100000;
-  protected static int count = 1;
-  protected int id = count++;
-  protected String hoTen, CMND, SDT, queQuan;
-  protected GioiTinh gioiTinh;
-  protected int soNgayCong;
+  public static final int LUONG = 100000;
+  private static int count = 1;
+  private int id = count++;
+  private String hoTen, CMND, SDT, queQuan;
+  private GioiTinh gioiTinh;
+  private int soNgayCong;
 
-  public void hienThi() {
-    System.out.println("Ho ten: " + this.hoTen);
-    System.out.println("So CMND: " + this.CMND);
-    System.out.println("Gioi tinh: " + this.gioiTinh);
-    System.out.println("Que quan: " + this.queQuan);
-    System.out.println("So dien thoai: " + this.SDT);
+  @Override
+  public String toString() {
+    return String.format(
+        "Ho ten: %s\nCMND: %s\nGioi tinh: %s\nQue quan: %s\nSDT: %s\n",
+        this.hoTen, this.CMND, this.gioiTinh, this.queQuan, this.SDT);
   }
 
   public double tinhLuong() {
-    return NhanVien.luong * this.soNgayCong;
+    return this.getSalaryRate() * NhanVien.LUONG * this.soNgayCong;
+  }
+
+  public double getSalaryRate() {
+    return 1;
   }
 
   public NhanVien(
