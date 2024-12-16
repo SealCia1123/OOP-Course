@@ -1,6 +1,6 @@
 package com.sealcia.baitap.BT3.Bai4;
 
-import com.sealcia.baitap.BT3.Config;
+import com.sealcia.baitap.BT3.Bai3.Config;
 import java.time.LocalDate;
 
 public class TaiKhoanCoKyHan extends TaiKhoan {
