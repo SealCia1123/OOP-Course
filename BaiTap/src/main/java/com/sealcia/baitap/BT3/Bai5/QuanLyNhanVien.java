@@ -7,6 +7,10 @@ import java.util.List;
 public class QuanLyNhanVien {
   private List<NhanVien> ds = new ArrayList<>();
 
+  public void printAll() {
+    this.ds.forEach(x -> System.out.println(x + "\n====="));
+  }
+
   public void addNV(NhanVien nv) {
     this.ds.add(nv);
   }

@@ -22,19 +22,11 @@ public class TaiKhoan {
     this.soTien -= soTien;
   }
 
-  public void print() {
-    System.out.println(this.toString());
-  }
-
   @Override
   public String toString() {
     return String.format(
-        "So tai khoan: %s\n"
-            + "Ten tai khoan: %s\n"
-            + "Email: %s\n"
-            + "So dien thoai: %s\n"
-            + "So tien: %.2f\n"
-            + "Ngay tao: %s\n",
+        "So tai khoan: %s - Ten tai khoan: %s - Email: %s - So dien thoai: %s\nSo tien: %.2f -"
+            + " Ngay tao: %s",
         this.soTaiKhoan,
         this.tenTaiKhoan,
         this.email,

@@ -16,7 +16,7 @@ public class NhanVien {
   @Override
   public String toString() {
     return String.format(
-        "Ho ten: %s\nCMND: %s\nGioi tinh: %s\nQue quan: %s\nSDT: %s\n",
+        "Ho ten: %s - CMND: %s - Gioi tinh: %s - Que quan: %s - SDT: %s",
         this.hoTen, this.CMND, this.gioiTinh, this.queQuan, this.SDT);
   }
 

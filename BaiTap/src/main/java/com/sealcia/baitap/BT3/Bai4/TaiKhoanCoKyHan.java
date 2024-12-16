@@ -32,7 +32,8 @@ public class TaiKhoanCoKyHan extends TaiKhoan {
   public String toString() {
     return super.toString()
         + String.format(
-            "Ky han: %s\nNgay dao han: %s\n", this.kyHan, this.ngayDaoHan.format(Config.FORMATTER));
+            " - Ky han: %s - Ngay dao han: %s",
+            this.kyHan, this.ngayDaoHan.format(Config.FORMATTER));
   }
 
   public TaiKhoanCoKyHan(
@@ -41,11 +42,20 @@ public class TaiKhoanCoKyHan extends TaiKhoan {
       String email,
       double soTien,
       LocalDate ngayTao,
-      KyHan kyHan,
-      LocalDate ngayDaoHan) {
+      KyHan kyHan) {
     super(soDT, tenTaiKhoan, email, soTien, ngayTao);
     this.kyHan = kyHan;
-    this.ngayDaoHan = ngayDaoHan;
+    switch (kyHan) {
+      case MOT_TUAN:
+        this.ngayDaoHan = this.getNgayTao().plusWeeks(1);
+        break;
+      case MOT_THANG:
+        this.ngayDaoHan = this.getNgayTao().plusMonths(1);
+        break;
+      case MOT_NAM:
+        this.ngayDaoHan = this.getNgayTao().plusYears(1);
+        break;
+    }
   }
 
   public KyHan getKyHan() {
