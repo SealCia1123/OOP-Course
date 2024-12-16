@@ -5,6 +5,11 @@ import java.time.LocalDate;
 public class GiangVienThinhGiang extends GiangVien {
   private String noiCongTac;
 
+  @Override
+  public double tinhLuong() {
+    throw new UnsupportedOperationException("Unimplemented method 'tinhLuong'");
+  }
+
   public GiangVienThinhGiang(
       String hoTen,
       String hocHam,

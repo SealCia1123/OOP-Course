@@ -15,9 +15,9 @@ public class Main {
     ql.themHinh(h1);
     ql.themHinh(h2, h3, h4, h5, h6, h7, h8, h9);
     ql.hienThi();
-    // ql.xoaHinh("tron");
-    // System.out.println("\n\n=== Sau khi xoa ===");
-    // ql.hienThi();
+    ql.xoaHinh("tron");
+    System.out.println("\n=== Sau khi xoa ===");
+    ql.hienThi();
 
     // try {
     //   System.out.println("\n\n=== Cac hinh Tam Giac ===");
@@ -36,7 +36,7 @@ public class Main {
     // System.out.println("\n\n=== Sap xep theo ten va dien tich ===");
     // ql.hienThi();
 
-    System.out.println("======");
+    System.out.println("\n======");
     System.out.printf("Dien tich trung binh: %.1f", ql.tinhTB());
   }
 }
