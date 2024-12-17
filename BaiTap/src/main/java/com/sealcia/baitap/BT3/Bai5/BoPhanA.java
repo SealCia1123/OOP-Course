@@ -3,7 +3,7 @@ package com.sealcia.baitap.BT3.Bai5;
 public class BoPhanA extends NhanVien {
   @Override
   public String toString() {
-    return super.toString() + " - Bo phan: A\n";
+    return super.toString() + " - Bo phan: A";
   }
 
   @Override

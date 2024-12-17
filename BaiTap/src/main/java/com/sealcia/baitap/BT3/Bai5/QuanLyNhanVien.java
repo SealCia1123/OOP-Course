@@ -9,17 +9,17 @@ public class QuanLyNhanVien {
   private List<NhanVien> ds = new ArrayList<>();
 
   public List<NhanVien> search(String keyword) {
-    try {
-      return this.ds.stream()
-          .filter(x -> x.getQueQuan().contains(keyword) || x.getHoTen().contains(keyword))
-          .collect(Collectors.toList());
-    } catch (Exception e) {
-      return this.ds.stream().filter(x -> x.getCMND().equals(keyword)).collect(Collectors.toList());
-    }
+    return this.ds.stream()
+        .filter(
+            x ->
+                x.getQueQuan().contains(keyword)
+                    || x.getHoTen().contains(keyword)
+                    || x.getCMND().equals(keyword))
+        .collect(Collectors.toList());
   }
 
   public void printAll() {
-    this.ds.forEach(x -> System.out.println(x + "\n====="));
+    this.ds.forEach(x -> System.out.println(x));
   }
 
   public void addNV(NhanVien nv) {
