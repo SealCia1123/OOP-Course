@@ -9,16 +9,7 @@ public class TaiKhoanCoKyHan extends TaiKhoan {
 
   @Override
   public double getInterest() {
-    switch (this.kyHan) {
-      case MOT_TUAN:
-        return 0.5 / 100;
-      case MOT_THANG:
-        return 4.5 / 100;
-      case MOT_NAM:
-        return 6.8 / 100;
-      default:
-        return 0;
-    }
+    return kyHan.getInterestRate();
   }
 
   @Override

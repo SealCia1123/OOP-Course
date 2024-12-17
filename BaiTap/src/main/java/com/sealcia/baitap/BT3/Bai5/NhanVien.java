@@ -81,4 +81,28 @@ public class NhanVien {
   public void setGioiTinh(GioiTinh gioiTinh) {
     this.gioiTinh = gioiTinh;
   }
+
+  public static int getLuong() {
+    return LUONG;
+  }
+
+  public static int getCount() {
+    return count;
+  }
+
+  public String getQueQuan() {
+    return queQuan;
+  }
+
+  public static void setCount(int count) {
+    NhanVien.count = count;
+  }
+
+  public void setId(int id) {
+    this.id = id;
+  }
+
+  public void setQueQuan(String queQuan) {
+    this.queQuan = queQuan;
+  }
 }

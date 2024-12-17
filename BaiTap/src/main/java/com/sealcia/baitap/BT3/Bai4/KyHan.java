@@ -4,17 +4,18 @@ public enum KyHan {
   MOT_TUAN,
   MOT_THANG,
   MOT_NAM;
+  private double PERCENT = 0.01;
 
   public double getInterestRate() {
     switch (this) {
       case MOT_TUAN:
-        return 1;
+        return 0.5 * PERCENT;
       case MOT_THANG:
-        return 0.5 / 100;
+        return 4.5 * PERCENT;
       case MOT_NAM:
-        return 4.5 / 100;
+        return 6.8 * PERCENT;
       default:
-        return 0;
+        return 0.1 / 100;
     }
   }
 }
