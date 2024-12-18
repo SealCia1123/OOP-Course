@@ -3,25 +3,26 @@ package com.sealcia.baitap.BT4.Bai1;
 public abstract class Hinh {
   private String ten;
 
+  @Override
+  public String toString() {
+    return String.format(
+        "%s - Dien tich: %1.f - Chu vi: %.1f",
+        this.getTen(), this.tinhDienTich(), this.tinhChuVi());
+  }
+
   public abstract double tinhDienTich();
 
   public abstract double tinhChuVi();
 
-  @Override
-  public String toString() {
-    return String.format(
-        "Hinh %s\nDien tich: %.1f\nChu vi: %.1f", this.ten, this.tinhDienTich(), this.tinhChuVi());
-  }
-
-  public Hinh(String name) {
-    this.ten = name;
+  public Hinh(String ten) {
+    this.ten = ten;
   }
 
   public String getTen() {
     return ten;
   }
 
-  public void setTen(String name) {
-    this.ten = name;
+  public void setTen(String ten) {
+    this.ten = ten;
   }
 }

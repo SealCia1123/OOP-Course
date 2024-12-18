@@ -5,17 +5,17 @@ public class TamGiac extends Hinh {
 
   @Override
   public double tinhDienTich() {
-    double p = this.tinhChuVi() / 2;
-    return Math.sqrt(p * (p - a) * (p - b) * (p - c));
+    double p = this.tinhChuVi();
+    return Math.sqrt(p * (p - this.a) * (p - this.b) * (p - this.c));
   }
 
   @Override
   public double tinhChuVi() {
-    return this.a + this.b + this.c;
+    return a + b + c;
   }
 
-  public TamGiac(double a, double b, double c) {
-    super("tam giac");
+  public TamGiac(String ten, double a, double b, double c) {
+    super(ten);
     this.a = a;
     this.b = b;
     this.c = c;

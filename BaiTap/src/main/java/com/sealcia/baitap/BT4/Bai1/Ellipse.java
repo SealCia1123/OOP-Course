@@ -10,11 +10,11 @@ public class Ellipse extends Hinh {
 
   @Override
   public double tinhChuVi() {
-    return 2 * Math.PI * Math.sqrt((Math.pow(this.trucLon, 2) + Math.pow(this.trucBe, 2)) / 2);
+    return 2 * Math.PI * this.trucBe * this.trucLon;
   }
 
-  public Ellipse(double trucLon, double trucBe) {
-    super("ellipse");
+  public Ellipse(String ten, double trucLon, double trucBe) {
+    super(ten);
     this.trucLon = trucLon;
     this.trucBe = trucBe;
   }
